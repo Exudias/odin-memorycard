@@ -7,8 +7,10 @@ function App() {
   const [champions, setChampions] = useState({});
 
   useEffect(() => {
-    const versionURL = import.meta.env.DEV ? import.meta.env.VITE_DDRAGON_VERSION_URL_DEV : process.env.VITE_DDRAGON_VERSION_URL;
-    const championsURL = import.meta.env.DEV ? import.meta.env.VITE_DDRAGON_CHAMPIONS_URL_DEV : process.env.VITE_DDRAGON_CHAMPIONS_URL;
+    const versionURL = 'https://ddragon.leagueoflegends.com/api/versions.json';
+    const championsURL = 'https://ddragon.leagueoflegends.com/cdn/14.13.1/data/en_US/champion.json';
+
+    console.log(process.env.VITE_RIOT_API_KEY);
 
     Promise.resolve(fetchData(versionURL))
       .then(fetchedVersion => {
