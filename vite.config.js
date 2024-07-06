@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'https://ddragon.leagueoflegends.com',
+      '/api/*': {
+        target: 'https://ddragon.leagueoflegends.com/:splat',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
