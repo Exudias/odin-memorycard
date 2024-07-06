@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/api"
-  to = "https://ddragon.leagueoflegends.com"
+  from = "/api/*"
+  to = "https://ddragon.leagueoflegends.com/:splat"
   status = 200
   force = true
   headers = {X-From = "Netlify"}

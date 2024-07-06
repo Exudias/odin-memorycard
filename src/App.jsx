@@ -7,8 +7,8 @@ function App() {
   const [champions, setChampions] = useState({});
 
   useEffect(() => {
-    const versionURL = 'https://ddragon.leagueoflegends.com/api/versions.json';
-    const championsURL = 'https://ddragon.leagueoflegends.com/cdn/14.13.1/data/en_US/champion.json';
+    const versionURL = '/api/versions.json';
+    const championsURL = '/cdn/14.13.1/data/en_US/champion.json';
 
     Promise.resolve(fetchData(versionURL))
       .then(fetchedVersion => {
