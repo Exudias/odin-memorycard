@@ -8,19 +8,17 @@ function App() {
 
   useEffect(() => {
     const versionURL = '/api/versions.json';
-    const championsURL = '/cdn/14.13.1/data/en_US/champion.json';
 
     Promise.resolve(fetchData(versionURL))
       .then(fetchedVersion => {
         setVersion(fetchedVersion[0]); 
-      })
-      .catch(error => {
-        console.error('Error in promise chain: ', error);
-      });
-
-    Promise.resolve(fetchData(championsURL))
-      .then(fetchedChamions => {
-        setChampions(fetchedChamions); 
+        Promise.resolve(fetchData(`/cdn/${fetchedVersion[0]}/data/en_US/champion.json`))
+        .then(fetchedChamions => {
+          setChampions(fetchedChamions); 
+        })
+        .catch(error => {
+          console.error('Error in promise chain: ', error);
+        });
       })
       .catch(error => {
         console.error('Error in promise chain: ', error);
