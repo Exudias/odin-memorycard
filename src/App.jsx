@@ -10,8 +10,6 @@ function App() {
     const versionURL = 'https://ddragon.leagueoflegends.com/api/versions.json';
     const championsURL = 'https://ddragon.leagueoflegends.com/cdn/14.13.1/data/en_US/champion.json';
 
-    console.log(process.env.VITE_RIOT_API_KEY);
-
     Promise.resolve(fetchData(versionURL))
       .then(fetchedVersion => {
         setVersion(fetchedVersion[0]); 
