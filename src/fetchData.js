@@ -1,6 +1,5 @@
 async function fetchData(url) 
 {
-    console.log("Fetching from: " + url);
     try 
     {
         const response = await fetch(`/api${url}`, {

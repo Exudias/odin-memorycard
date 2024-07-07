@@ -21,8 +21,6 @@ function App() {
 
   useEffect(() => {
     if (sessionStorage.getItem(STORAGE_CHAMPIONS_KEY)) return;
-    
-    console.log("Calling APIs...");
 
     const versionURL = '/api/versions.json';
 
@@ -41,8 +39,6 @@ function App() {
         console.error('Error in promise chain: ', error);
       });
   }, []);
-
-  console.log("Redrawing App");
 
   return (
     <>
