@@ -36,15 +36,13 @@ function App() {
 
   const loaded = Object.keys(champions).length > 0;
 
-  const randomChamps = getNRandomFromObject(champions.data, 16);
-
-  return (loaded ? 
-    <>
-      <Game champions={randomChamps}/>
-    </>
-    :
-    <h1>Loading...</h1>
-  )
+  if (loaded)
+  {
+    const randomChamps = getNRandomFromObject(champions.data, 16);
+    return <Game champions={randomChamps}/>;
+  }
+  
+  return <h1>Loading...</h1>;
 }
 
 function getNRandomFromObject(obj, N)
