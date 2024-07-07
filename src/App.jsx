@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import fetchData from './fetchData';
 import { STORAGE_CHAMPIONS_KEY, STORAGE_VERSION_KEY } from './constants';
+import Game from './components/Game';
 
 function App() {
   const [version, setVersion] = useState(sessionStorage.getItem(STORAGE_VERSION_KEY) ?? "");
@@ -40,11 +41,14 @@ function App() {
       });
   }, []);
 
-  return (
+  const loaded = Object.keys(champions).length > 0;
+
+  return (loaded ? 
     <>
-      {Object.keys(champions).length > 0 && <h1>Champions #: {Object.keys(champions.data).length}</h1>}
-      {version && <h1>Version: {version}</h1>}
+      <Game/>
     </>
+    :
+    <h1>Loading...</h1>
   )
 }
 
