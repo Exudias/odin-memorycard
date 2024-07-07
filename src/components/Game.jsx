@@ -17,8 +17,7 @@ function ScoreContainer()
     const [highScore, setHighScore] = useState(0);
 
     return <div className="score-container">
-        <span>Score: {score}</span>
-        <span>Best: {highScore}</span>
+        <span>Score: {score} | Best: {highScore}</span>
     </div>;
 }
 
