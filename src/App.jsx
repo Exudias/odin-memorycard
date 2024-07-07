@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import fetchData from './fetchData';
-
-const STORAGE_VERSION_KEY = "version";
-const STORAGE_CHAMPIONS_KEY = "champions";
+import { STORAGE_CHAMPIONS_KEY, STORAGE_VERSION_KEY } from './constants';
 
 function App() {
   const [version, setVersion] = useState(sessionStorage.getItem(STORAGE_VERSION_KEY) ?? "");
@@ -23,6 +21,9 @@ function App() {
 
   useEffect(() => {
     if (sessionStorage.getItem(STORAGE_CHAMPIONS_KEY)) return;
+    
+    console.log("Calling APIs...");
+
     const versionURL = '/api/versions.json';
 
     Promise.resolve(fetchData(versionURL))
@@ -40,6 +41,8 @@ function App() {
         console.error('Error in promise chain: ', error);
       });
   }, []);
+
+  console.log("Redrawing App");
 
   return (
     <>
