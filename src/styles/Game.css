@@ -22,8 +22,8 @@
 }
 
 .game-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 200px);
+    display: flex;
+    flex-wrap: wrap;
     gap: 16px;
     max-width: 100%;
     padding: 10px 64px;
@@ -42,6 +42,8 @@
     border-radius: 16px 16px 4px 4px;
 
     transition: transform 0.15s, border-color 0.15s, color 0.15s;
+
+    user-select: none;
 }
 
 .card:hover {
@@ -52,9 +54,27 @@
 
 .card > img {
     width: 95%;
+
+    user-drag: none;
+    -webkit-user-drag: none;
 }
 
 .card > h1 {
     font-size: 1.5rem;
     margin: 0.4rem 0;
+}
+
+.victory-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 80vh;
+}
+
+.victory-container h1, .victory-container h2 {
+    margin: 0;
 }
