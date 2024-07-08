@@ -1,8 +1,11 @@
-# React + Vite
+# League of Memory
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web game where the player must click on each League of Legends champion only once. There are a couple of difficulties, with harder difficulties having more cards at once.
 
-Currently, two official plugins are available:
+The app uses Riot Games' API to get every champion (currently there are 167) and to put their name alongside a picture of them on screen.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The images are preloaded so as to not interfere with gameplay.
+
+![img0](https://github.com/Exudias/odin-memorycard/assets/30040298/4f8a2798-7804-416e-a33c-db95446b71a0)
+
+Live link: [Netlify](https://leagueofmemory.netlify.app/)
