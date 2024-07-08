@@ -42,7 +42,7 @@
     box-sizing: border-box;
     max-width: 200px;
     overflow:hidden;
-    padding: 8px 0 0 0;
+    padding: 0;
 
     background-color: #0A1428;
     border: 6px solid #C89B3C;
@@ -53,17 +53,28 @@
     user-select: none;
 }
 
+.card-placeholder {
+    width: 188px;
+    aspect-ratio: 308/506;
+    background-color: grey;
+}
+
 .card:hover {
     transform: scale(1.05) rotate(0.5deg);
     border-color: #0AC8B9;
     color: #0AC8B9;
 }
 
-.card > img {
-    width: 95%;
+.card-image {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     user-drag: none;
     -webkit-user-drag: none;
+
+    border-bottom: 2px solid #C89B3C;
 }
 
 .card > h1 {
