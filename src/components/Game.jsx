@@ -1,24 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Game.css";
 import Card from "./Card";
 import shuffle from "../shuffle";
+import { DIFFICULTIES } from "../constants";
 
-function Game({champions})
+function Game({champions, difficulty})
 {
     const [score, setScore] = useState(0);
-    const [highScore, setHighScore] = useState(0);
+    const [highScores, setHighScores] = useState({0: 0, 1: 0, 2: 0});
     const [dummy, setDummy] = useState(0);
+
+    useEffect(() => {
+        setScore(0);
+    }, [difficulty]);
 
     const shuffledKeys = Object.keys(champions);
     shuffle(shuffledKeys);
 
+    const currentHighScore = highScores[difficulty];
+    
     function addScore()
     {
         const newScore = score + 1;
         setScore(newScore);
-        if (highScore < newScore)
+        if (currentHighScore < newScore)
         {
-            setHighScore(newScore);
+            const newHighScores = {...highScores};
+            newHighScores[difficulty] = newScore;
+            setHighScores(newHighScores);
         }
     }
 
@@ -29,15 +38,15 @@ function Game({champions})
     }
 
     return <div className="game">
-        <ScoreContainer score={score} highScore={highScore}/>
+        <ScoreContainer score={score} highScore={currentHighScore} difficulty={difficulty}/>
         <GameContainer addScore={addScore} resetScore={resetScore} champions={champions} shuffledKeys={shuffledKeys}/>
     </div>
 }
 
-function ScoreContainer({score, highScore})
+function ScoreContainer({score, highScore, difficulty})
 {
     return <div className="score-container">
-        <span>Score: {score} | Best: {highScore}</span>
+        <span>Score: {score} | Best: {highScore} ({DIFFICULTIES[difficulty].name})</span>
     </div>;
 }
 
@@ -49,8 +58,7 @@ function GameContainer({addScore, resetScore, champions, shuffledKeys})
     {
         return <div className="victory-container">
             <h1>You win!</h1>
-            <h2>Try again?</h2>
-            <button onClick={() => {setSelected([]); resetScore();}}>Restart</button>
+            <h2>Feel free to try again or select a higher difficulty!</h2>
         </div>
     }
 

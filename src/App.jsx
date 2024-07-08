@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import fetchData from './fetchData';
-import { STORAGE_CHAMPIONS_KEY } from './constants';
+import { STORAGE_CHAMPIONS_KEY, DIFFICULTIES } from './constants';
 import Game from './components/Game';
 import shuffle from './shuffle';
 
 function App() {
   const [champions, setChampions] = useState(JSON.parse(sessionStorage.getItem(STORAGE_CHAMPIONS_KEY)) ?? {});
+  const [difficulty, setDifficulty] = useState(1);
+  const [dummy, setDummy] = useState(0);
 
   function updateChampions(newChampions)
   {
@@ -34,12 +36,26 @@ function App() {
       });
   }, []);
 
+  function handleSetDifficulty(id)
+  {
+    setDifficulty(id);
+    document.title = "League of Memory | " + DIFFICULTIES[id].name;
+  }
+
   const loaded = Object.keys(champions).length > 0;
 
   if (loaded)
   {
-    const randomChamps = getNRandomFromObject(champions.data, 16);
-    return <Game champions={randomChamps}/>;
+    const randomChamps = getNRandomFromObject(champions.data, DIFFICULTIES[difficulty].cardCount);
+    return <>
+      <div className="controls-menu">
+        <button onClick={() => setDummy(dummy + 1)}>Try new</button>
+        <button onClick={() => handleSetDifficulty(0)} disabled={difficulty == 0}>Easy</button>
+        <button onClick={() => handleSetDifficulty(1)} disabled={difficulty == 1}>Normal</button>
+        <button onClick={() => handleSetDifficulty(2)} disabled={difficulty == 2}>Hard</button>
+      </div>
+      <Game champions={randomChamps} difficulty={difficulty}/>
+    </>
   }
   
   return <h1>Loading...</h1>;
