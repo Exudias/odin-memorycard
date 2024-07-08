@@ -40,47 +40,6 @@
     justify-content: center;
 }
 
-.card {
-    box-sizing: border-box;
-    max-width: 200px;
-    overflow:hidden;
-    padding: 0;
-
-    background-color: #0A1428;
-    border: 6px solid #C89B3C;
-    border-radius: 16px 16px 4px 4px;
-
-    transition: transform 0.15s, border-color 0.15s, color 0.15s;
-
-    user-select: none;
-}
-
-.card-placeholder {
-    width: 188px;
-    aspect-ratio: 308/506;
-    background-color: grey;
-}
-
-.card:hover {
-    transform: scale(1.05) rotate(0.5deg);
-    border-color: #0AC8B9;
-    color: #0AC8B9;
-}
-
-.card-image {
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    border-bottom: 2px solid #C89B3C;
-}
-
-.card > h1 {
-    font-size: 1.5rem;
-    margin: 0.4rem 0;
-}
-
 .victory-container {
     display: flex;
     flex-direction: column;
