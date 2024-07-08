@@ -1,0 +1,23 @@
+footer {
+    height: 32px;
+}
+
+footer img {
+    width: 32px;
+    filter: invert();
+}
+
+footer div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

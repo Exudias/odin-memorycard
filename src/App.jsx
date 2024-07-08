@@ -6,6 +6,7 @@ import Game from './components/Game';
 import shuffle from './shuffle';
 import { preloadImage } from './preloadImages';
 import Help from './components/Help'
+import Copyright from './components/Copyright'
 
 function App() {
   const [champions, setChampions] = useState(JSON.parse(sessionStorage.getItem(STORAGE_CHAMPIONS_KEY)) ?? {});
@@ -70,6 +71,7 @@ function App() {
       </div>
       <Help/>
       <Game champions={randomChamps} difficulty={difficulty}/>
+      <Copyright/>
     </>
   }
   
