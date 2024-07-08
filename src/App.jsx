@@ -4,10 +4,12 @@ import fetchData from './fetchData';
 import { STORAGE_CHAMPIONS_KEY, DIFFICULTIES } from './constants';
 import Game from './components/Game';
 import shuffle from './shuffle';
+import { preloadImage } from './preloadImages';
 
 function App() {
   const [champions, setChampions] = useState(JSON.parse(sessionStorage.getItem(STORAGE_CHAMPIONS_KEY)) ?? {});
   const [difficulty, setDifficulty] = useState(1);
+  const [caching, setCaching] = useState(true);
   const [dummy, setDummy] = useState(0);
 
   function updateChampions(newChampions)
@@ -15,6 +17,17 @@ function App() {
     setChampions(newChampions);
     sessionStorage.setItem(STORAGE_CHAMPIONS_KEY, JSON.stringify(newChampions));
   }
+
+  useEffect(() => {
+    if (Object.keys(champions).length <= 0) return;
+    const imageURLs = Object.keys(champions.data).map((id) => `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${id}_0.jpg`);
+    Promise.all(imageURLs.map(preloadImage))
+    .then(() => setCaching(false))
+    .catch((err) => {
+      console.error("Failed caching! ", err);
+      setCaching(false);
+    });
+  }, [champions]);
 
   useEffect(() => {
     if (sessionStorage.getItem(STORAGE_CHAMPIONS_KEY)) return;
@@ -44,7 +57,7 @@ function App() {
 
   const loaded = Object.keys(champions).length > 0;
 
-  if (loaded)
+  if (loaded && !caching)
   {
     const randomChamps = getNRandomFromObject(champions.data, DIFFICULTIES[difficulty].cardCount);
     return <>
@@ -58,7 +71,7 @@ function App() {
     </>
   }
   
-  return <h1>Loading...</h1>;
+  return <h1 className='loading-title'>Loading...</h1>;
 }
 
 function getNRandomFromObject(obj, N)

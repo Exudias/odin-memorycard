@@ -34,3 +34,7 @@
 .controls-menu button:first-child {
   margin-right: 32px;
 }
+
+.loading-title {
+  height: 100vh;
+}
