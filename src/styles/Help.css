@@ -1,0 +1,40 @@
+.help-button {
+    position: fixed;
+
+    bottom: 16px;
+    right: 16px;
+
+    z-index: 9999;
+}
+
+.help-button img {
+    width: 64px;
+    height: 64px;
+
+    filter: invert() sepia();
+    
+    transition: transform .2s;
+}
+
+.help-button:hover {
+    transform: scale(1.1);
+}
+
+.help-div {
+    position: absolute;
+
+    min-width: 300px;
+    opacity: 0;
+
+    background-color: black;
+    padding: 4px;
+    border-radius: 8px;
+
+    transition: opacity .2s, transform 0.2s;
+    transform: translate(0%, -100%);
+}
+
+.help-button:hover .help-div {
+    opacity: 1;
+    transform: translate(-100%, -100%);
+}

@@ -5,6 +5,7 @@ import { STORAGE_CHAMPIONS_KEY, DIFFICULTIES } from './constants';
 import Game from './components/Game';
 import shuffle from './shuffle';
 import { preloadImage } from './preloadImages';
+import Help from './components/Help'
 
 function App() {
   const [champions, setChampions] = useState(JSON.parse(sessionStorage.getItem(STORAGE_CHAMPIONS_KEY)) ?? {});
@@ -67,6 +68,7 @@ function App() {
           <button key={key} onClick={() => handleSetDifficulty(key)} disabled={difficulty == key}>{DIFFICULTIES[key].name}</button>
         )}
       </div>
+      <Help/>
       <Game champions={randomChamps} difficulty={difficulty}/>
     </>
   }
