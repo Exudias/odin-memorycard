@@ -63,9 +63,9 @@ function App() {
     return <>
       <div className="controls-menu">
         <button onClick={() => setDummy(dummy + 1)}>Try new</button>
-        <button onClick={() => handleSetDifficulty(0)} disabled={difficulty == 0}>Easy</button>
-        <button onClick={() => handleSetDifficulty(1)} disabled={difficulty == 1}>Normal</button>
-        <button onClick={() => handleSetDifficulty(2)} disabled={difficulty == 2}>Hard</button>
+        {Object.keys(DIFFICULTIES).map((key) => 
+          <button key={key} onClick={() => handleSetDifficulty(key)} disabled={difficulty == key}>{DIFFICULTIES[key].name}</button>
+        )}
       </div>
       <Game champions={randomChamps} difficulty={difficulty}/>
     </>

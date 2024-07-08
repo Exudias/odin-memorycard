@@ -7,7 +7,7 @@ import { DIFFICULTIES } from "../constants";
 function Game({champions, difficulty})
 {
     const [score, setScore] = useState(0);
-    const [highScores, setHighScores] = useState({0: 0, 1: 0, 2: 0});
+    const [highScores, setHighScores] = useState({});
     const [dummy, setDummy] = useState(0);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ function Game({champions, difficulty})
     const shuffledKeys = Object.keys(champions);
     shuffle(shuffledKeys);
 
-    const currentHighScore = highScores[difficulty];
+    const currentHighScore = highScores[difficulty] ?? 0;
     
     function addScore()
     {

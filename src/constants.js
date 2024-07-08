@@ -12,5 +12,13 @@ export const DIFFICULTIES =
     2: {
         name: "Hard",
         cardCount: 32
+    },
+    3: {
+        name: "Harder",
+        cardCount: 64
+    },
+    4: {
+        name: "Impossible",
+        cardCount: 167
     }
 }
